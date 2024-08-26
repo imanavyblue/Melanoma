@@ -1,0 +1,32 @@
+name: CI/CD Pipeline
+
+# กำหนดให้ workflow ทำงานเมื่อมีการ push หรือ pull request บน branch 'main'
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # รัน workflow บน Ubuntu ล่าสุด
+
+    steps:
+    - name: Checkout repository content
+      uses: actions/checkout@v2  # ดึงโค้ดจาก repository
+
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2  # ตั้งค่า Python เวอร์ชัน 3.8
+      with:
+        python-version: '3.8'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt  # ติดตั้ง dependencies จากไฟล์ requirements.txt
+
+    - name: Run tests
+      run: |
+        pytest  # รันการทดสอบด้วย pytest

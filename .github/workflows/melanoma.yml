@@ -17,10 +17,10 @@ jobs:
     - name: Checkout repository content
       uses: actions/checkout@v2  # ดึงโค้ดจาก repository
 
-    - name: Set up Python 3.8
+    - name: Set up Python 3.9
       uses: actions/setup-python@v2  # ตั้งค่า Python เวอร์ชัน 3.8
       with:
-        python-version: '3.8'
+        python-version: '3.9'
 
     - name: Install dependencies
       run: |
